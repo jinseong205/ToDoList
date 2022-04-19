@@ -16,8 +16,9 @@ def createTodo(request):
     return HttpResponseRedirect(reverse('index'))
     #return HttpResponse("create Todo : " + user_input_str)
 
-def deleteTodo(request):
+def doneTodo(request):
     done_todo_id = request.GET['todoNum']
     todo = Todo.objects.get(id = done_todo_id)
-    todo.delete()
+    todo.isDone = True
+    todo.save()
     return HttpResponseRedirect(reverse('index'))    
